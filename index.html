@@ -212,7 +212,7 @@
                     <!-- Service Card 1 -->
                     <div class="bg-brand-light rounded-lg border border-slate-200 p-6 flex flex-col justify-between hover:shadow-md transition">
                         <div>
-                            <div class="w-12 h-12 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold mb-4">
+                            <div class="service-badge w-12 h-12 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold mb-4">
                                 01
                             </div>
                             <h3 class="text-xl font-bold text-slate-900 mb-2">Consumer Unit Upgrades</h3>
@@ -228,7 +228,7 @@
                     <!-- Service Card 2 -->
                     <div class="bg-brand-light rounded-lg border border-slate-200 p-6 flex flex-col justify-between hover:shadow-md transition">
                         <div>
-                            <div class="w-12 h-12 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold mb-4">
+                            <div class="service-badge w-12 h-12 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold mb-4">
                                 02
                             </div>
                             <h3 class="text-xl font-bold text-slate-900 mb-2">Domestic Electrical Work</h3>
@@ -244,7 +244,7 @@
                     <!-- Service Card 3 -->
                     <div class="bg-brand-light rounded-lg border border-slate-200 p-6 flex flex-col justify-between hover:shadow-md transition">
                         <div>
-                            <div class="w-12 h-12 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold mb-4">
+                            <div class="service-badge w-12 h-12 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold mb-4">
                                 03
                             </div>
                             <h3 class="text-xl font-bold text-slate-900 mb-2">Electrical Rewiring</h3>
@@ -260,7 +260,7 @@
                     <!-- Service Card 4 -->
                     <div class="bg-brand-light rounded-lg border border-slate-200 p-6 flex flex-col justify-between hover:shadow-md transition">
                         <div>
-                            <div class="w-12 h-12 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold mb-4">
+                            <div class="service-badge w-12 h-12 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold mb-4">
                                 04
                             </div>
                             <h3 class="text-xl font-bold text-slate-900 mb-2">Lighting & Sockets</h3>
@@ -276,7 +276,7 @@
                     <!-- Service Card 5 -->
                     <div class="bg-brand-light rounded-lg border border-slate-200 p-6 flex flex-col justify-between hover:shadow-md transition">
                         <div>
-                            <div class="w-12 h-12 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold mb-4">
+                            <div class="service-badge w-12 h-12 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold mb-4">
                                 05
                             </div>
                             <h3 class="text-xl font-bold text-slate-900 mb-2">Fault Finding & Repairs</h3>
@@ -292,7 +292,7 @@
                     <!-- Service Card 6 -->
                     <div class="bg-brand-light rounded-lg border border-slate-200 p-6 flex flex-col justify-between hover:shadow-md transition">
                         <div>
-                            <div class="w-12 h-12 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold mb-4">
+                            <div class="service-badge w-12 h-12 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold mb-4">
                                 06
                             </div>
                             <h3 class="text-xl font-bold text-slate-900 mb-2">Commercial Electrical</h3>
@@ -571,7 +571,7 @@
         </a>
     </div>
 
-    <!-- ADVANCED DYNAMIC ROUTER & THEME STYLING SCRIPT -->
+    <!-- ADVANCED DYNAMIC ROUTER & INDIVIDUALITY THEME STYLING SCRIPT FOR 121 LEADS -->
     <script>
         // Set dynamic copyright year
         document.getElementById('year').textContent = new Date().getFullYear();
@@ -594,11 +594,11 @@
             confirmation.classList.remove('hidden');
         });
 
-        // 1. Extract URL Parameters (?biz=BusinessName&phone=PhoneNumber&v=2)
+        // 1. Extract URL Parameters (?biz=BusinessName&phone=PhoneNumber&v=1 to 121)
         const urlParams = new URLSearchParams(window.location.search);
         const businessName = urlParams.get('biz');
         const phoneParam = urlParams.get('phone');
-        const variant = parseInt(urlParams.get('v')) || 1;
+        const variant = Math.max(1, Math.min(121, parseInt(urlParams.get('v')) || 1));
 
         if (businessName) {
             const decodedName = decodeURIComponent(businessName.replace(/\+/g, ' '));
@@ -609,7 +609,7 @@
                 el.textContent = decodedName;
             });
 
-            // Extract potential town/city if present (e.g. "Electrician Gloucester" -> "Gloucester")
+            // Extract potential town/city if present
             const parts = decodedName.split(' ');
             if (parts.length > 1) {
                 const town = parts[parts.length - 1];
@@ -629,29 +629,61 @@
             });
         }
 
-        // 2. Unique Variant Color Palettes per Lead (cycles automatically based on ?v= number, fonts and styles remain unchanged)
-        const themes = [
-            { primary: '#0F172A', accent: '#F59E0B' }, // Variant 1: Slate & Amber
-            { primary: '#1E3A8A', accent: '#3B82F6' }, // Variant 2: Deep Blue & Bright Blue
-            { primary: '#064E3B', accent: '#10B981' }, // Variant 3: Forest Green & Emerald
-            { primary: '#7F1D1D', accent: '#EF4444' }, // Variant 4: Deep Red & Crimson
-            { primary: '#581C87', accent: '#A855F7' }  // Variant 5: Rich Purple & Violet
-        ];
+        // 2. Dynamic Algorithmic Individuality Generator for all 121 Leads (?v=1 to 121)
+        // Generates truly distinct colors, fonts, and icon badge styles for every single lead variant index.
+        function generateUniqueLeadTheme(v) {
+            // Distribute hues across 360 degrees using a golden-ratio/coprime step for maximum distinction
+            const hue = (v * 47) % 360;
+            const accentHue = (hue + 40 + (v % 5) * 15) % 360;
 
-        const activeTheme = themes[(variant - 1) % themes.length];
+            const primaryColor = `hsl(${hue}, 30%, 11%)`;       // Rich individual dark slate/tone
+            const accentColor = `hsl(${accentHue}, 85%, 52%)`;    // Vibrant unique accent color
+            const lightBgColor = `hsl(${hue}, 20%, 98%)`;       // Subtle tinted background
 
-        // Apply unique custom theme color styling dynamically across the page
+            // Typography rotation across 5 distinct font styles & weights
+            const fonts = [
+                'system-ui, -apple-system, sans-serif',
+                'Georgia, Cambria, "Times New Roman", serif',
+                'ui-monospace, SFMono-Regular, Menlo, monospace',
+                '"Trebuchet MS", "Lucida Grande", sans-serif',
+                'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif'
+            ];
+            const fontStyle = fonts[(v - 1) % fonts.length];
+
+            // Icon badge style variation (border radius & shadow shape styles)
+            const badgeRadius = (v % 3 === 0) ? '9999px' : (v % 3 === 1) ? '0.75rem' : '0.25rem';
+
+            return {
+                primary: primaryColor,
+                accent: accentColor,
+                lightBg: lightBgColor,
+                font: fontStyle,
+                badgeRadius: badgeRadius
+            };
+        }
+
+        const leadTheme = generateUniqueLeadTheme(variant);
+
+        // Apply unique custom theme styling dynamically across the page elements
+        document.body.style.fontFamily = leadTheme.font;
+
         document.querySelectorAll('.bg-brand-amber').forEach(el => {
-            el.style.backgroundColor = activeTheme.accent;
+            el.style.backgroundColor = leadTheme.accent;
         });
         document.querySelectorAll('.text-brand-amber').forEach(el => {
-            el.style.color = activeTheme.accent;
+            el.style.color = leadTheme.accent;
         });
         document.querySelectorAll('.text-brand-amberDark').forEach(el => {
-            el.style.color = activeTheme.accent;
+            el.style.color = leadTheme.accent;
         });
         document.querySelectorAll('header').forEach(el => {
-            el.style.borderBottomColor = activeTheme.accent;
+            el.style.borderBottomColor = leadTheme.accent;
+        });
+        document.querySelectorAll('.service-badge').forEach(el => {
+            el.style.borderRadius = leadTheme.badgeRadius;
+            el.style.backgroundColor = leadTheme.lightBg;
+            el.style.borderColor = leadTheme.accent;
+            el.style.borderWidth = '1px';
         });
     </script>
 </body>
