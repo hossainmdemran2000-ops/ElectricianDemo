@@ -597,5 +597,51 @@
             confirmation.classList.remove('hidden');
         });
     </script>
+    <script>
+    // 1. Extract URL Parameters (?biz=BusinessName&v=2)
+    const urlParams = new URLSearchParams(window.location.search);
+    const businessName = urlParams.get('biz');
+    const variant = parseInt(urlParams.get('v')) || 1;
+
+    if (businessName) {
+        // Decode spaces in business name
+        const decodedName = decodeURIComponent(businessName.replace(/\+/g, ' '));
+        
+        // Update Page Title
+        document.title = decodedName + " | Professional Electrical Services";
+        
+        // Update all text placeholders on the page
+        document.querySelectorAll('h1, h2, h3, span, a, p').forEach(el => {
+            if (el.textContent.includes('[ELECTRICIAN BUSINESS NAME]') || el.textContent.includes('[BUSINESS NAME]')) {
+                el.textContent = el.textContent.replace(/\[ELECTRICIAN BUSINESS NAME\]|\[BUSINESS NAME\]/g, decodedName);
+            }
+        });
+    }
+
+    // 2. Unique Variant Color Palettes & Fonts (Calculated per lead based on ?v= number)
+    const themes = [
+        { primary: '#0F172A', accent: '#F59E0B', font: 'sans-serif' }, // Variant 1: Slate & Amber
+        { primary: '#1E3A8A', accent: '#3B82F6', font: 'serif' },     // Variant 2: Deep Blue & Bright Blue
+        { primary: '#064E3B', accent: '#10B981', font: 'sans-serif' }, // Variant 3: Forest Green & Emerald
+        { primary: '#7F1D1D', accent: '#EF4444', font: 'monospace' },  // Variant 4: Deep Red & Crimson
+        { primary: '#581C87', accent: '#A855F7', font: 'sans-serif' }  // Variant 5: Rich Purple & Violet
+    ];
+
+    // Pick a theme based on the variant number (loops through the 5 styles)
+    const activeTheme = themes[(variant - 1) % themes.length];
+
+    // Apply unique styles dynamically across the document
+    document.documentElement.style.setProperty('--brand-primary', activeTheme.primary);
+    document.documentElement.style.setProperty('--brand-accent', activeTheme.accent);
+    
+    // Apply accent colors to main buttons and headings dynamically
+    document.querySelectorAll('.bg-brand-amber').forEach(el => {
+        el.style.backgroundColor = activeTheme.accent;
+    });
+    document.querySelectorAll('.text-brand-amber').forEach(el => {
+        el.style.color = activeTheme.accent;
+    });
+</script>
+
 </body>
 </html>
