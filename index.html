@@ -629,18 +629,18 @@
             });
         }
 
-        // 2. Unique Variant Color Palettes & Fonts per Lead (cycles automatically based on ?v= number)
+        // 2. Unique Variant Color Palettes per Lead (cycles automatically based on ?v= number, fonts and styles remain unchanged)
         const themes = [
-            { primary: '#0F172A', accent: '#F59E0B', font: 'sans-serif' }, // Variant 1: Slate & Amber
-            { primary: '#1E3A8A', accent: '#3B82F6', font: 'serif' },     // Variant 2: Deep Blue & Bright Blue
-            { primary: '#064E3B', accent: '#10B981', font: 'sans-serif' }, // Variant 3: Forest Green & Emerald
-            { primary: '#7F1D1D', accent: '#EF4444', font: 'monospace' },  // Variant 4: Deep Red & Crimson
-            { primary: '#581C87', accent: '#A855F7', font: 'sans-serif' }  // Variant 5: Rich Purple & Violet
+            { primary: '#0F172A', accent: '#F59E0B' }, // Variant 1: Slate & Amber
+            { primary: '#1E3A8A', accent: '#3B82F6' }, // Variant 2: Deep Blue & Bright Blue
+            { primary: '#064E3B', accent: '#10B981' }, // Variant 3: Forest Green & Emerald
+            { primary: '#7F1D1D', accent: '#EF4444' }, // Variant 4: Deep Red & Crimson
+            { primary: '#581C87', accent: '#A855F7' }  // Variant 5: Rich Purple & Violet
         ];
 
         const activeTheme = themes[(variant - 1) % themes.length];
 
-        // Apply unique custom theme styling dynamically across the page
+        // Apply unique custom theme color styling dynamically across the page
         document.querySelectorAll('.bg-brand-amber').forEach(el => {
             el.style.backgroundColor = activeTheme.accent;
         });
