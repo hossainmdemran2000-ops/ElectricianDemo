@@ -609,12 +609,20 @@
                 el.textContent = decodedName;
             });
 
-            // Extract potential town/city if present
+            // Extract potential town/city if present, avoiding corporate suffixes and generic terms
             const parts = decodedName.split(' ');
-            if (parts.length > 1) {
-                const town = parts[parts.length - 1];
+            const ignoreWords = ['ltd', 'limited', 'llc', 'plc', 'inc', 'corp', 'electrical', 'electrician', 'electricians', 'services', 'service', 'and', '&', 'the'];
+            let detectedTown = '';
+            for (let i = parts.length - 1; i >= 0; i--) {
+                const cleanWord = parts[i].toLowerCase().replace(/[^a-z]/g, '');
+                if (cleanWord && !ignoreWords.includes(cleanWord) && cleanWord.length > 1) {
+                    detectedTown = parts[i];
+                    break;
+                }
+            }
+            if (detectedTown) {
                 document.querySelectorAll('.location-target').forEach(el => {
-                    el.textContent = town;
+                    el.textContent = detectedTown;
                 });
             }
         }
