@@ -594,10 +594,11 @@
             confirmation.classList.remove('hidden');
         });
 
-        // 1. Extract URL Parameters (?biz=BusinessName&phone=PhoneNumber&v=1 to 121)
+        // 1. Extract URL Parameters (?biz=BusinessName&phone=PhoneNumber&town=TownName&v=1 to 121)
         const urlParams = new URLSearchParams(window.location.search);
         const businessName = urlParams.get('biz');
         const phoneParam = urlParams.get('phone');
+        const townParam = urlParams.get('town') || urlParams.get('location');
         const variant = Math.max(1, Math.min(121, parseInt(urlParams.get('v')) || 1));
 
         if (businessName) {
@@ -609,20 +610,23 @@
                 el.textContent = decodedName;
             });
 
-            // Extract potential town/city if present, avoiding corporate suffixes and generic terms
-            const parts = decodedName.split(' ');
-            const ignoreWords = ['ltd', 'limited', 'llc', 'plc', 'inc', 'corp', 'electrical', 'electrician', 'electricians', 'services', 'service', 'and', '&', 'the'];
-            let detectedTown = '';
-            for (let i = parts.length - 1; i >= 0; i--) {
-                const cleanWord = parts[i].toLowerCase().replace(/[^a-z]/g, '');
-                if (cleanWord && !ignoreWords.includes(cleanWord) && cleanWord.length > 1) {
-                    detectedTown = parts[i];
-                    break;
+            // Determine town/city: Use explicit ?town= or ?location= if present, 
+            // otherwise intelligently parse from business name by filtering out corporate suffixes and industry terms (Limited, Ltd, Electrical, Services, etc.)
+            let town = townParam ? decodeURIComponent(townParam.replace(/\+/g, ' ')) : '';
+            if (!town) {
+                const strippedName = decodedName.replace(/\b(Limited|Ltd|Electrical|Services|Contractors|Group|Co|PLC|LLC)\b/gi, '').trim();
+                const parts = strippedName.split(/\s+/).filter(Boolean);
+                if (parts.length > 0) {
+                    town = parts[parts.length - 1];
+                } else {
+                    const origParts = decodedName.split(/\s+/);
+                    town = origParts.length > 1 ? origParts[origParts.length - 2] : origParts[0];
                 }
             }
-            if (detectedTown) {
+
+            if (town) {
                 document.querySelectorAll('.location-target').forEach(el => {
-                    el.textContent = detectedTown;
+                    el.textContent = town;
                 });
             }
         }
