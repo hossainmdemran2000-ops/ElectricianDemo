@@ -4,20 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Primary Metadata -->
     <title>[ELECTRICIAN BUSINESS NAME] | Electrical Services in [TOWN/CITY]</title>
     <meta name="description" content="Electrical services in [TOWN/CITY] and surrounding areas for domestic and commercial properties. Contact us to request a quote.">
     <link rel="canonical" href="[INSERT-CANONICAL-URL]">
     <meta name="robots" content="index, follow">
 
-    <!-- Open Graph / Social -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="[ELECTRICIAN BUSINESS NAME] | Electrical Services in [TOWN/CITY]">
     <meta property="og:description" content="Domestic and commercial electrical services across [TOWN/CITY] & surrounding areas. Request a quote online.">
     <meta property="og:url" content="[INSERT-SITE-URL]">
     <meta property="og:locale" content="en_GB">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1200&q=80">
 
-    <!-- Tailwind CSS (via CDN for standalone deployment) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -25,11 +23,11 @@
                 extend: {
                     colors: {
                         brand: {
-                            dark: '#0F172A',   // Slate 900
-                            navy: '#1E293B',   // Slate 800
-                            amber: '#F59E0B',  // Amber 500
-                            amberDark: '#D97706', // Amber 600
-                            light: '#F8FAFC'   // Slate 50
+                            dark: '#0F172A',
+                            navy: '#1E293B',
+                            amber: '#F59E0B',
+                            amberDark: '#D97706',
+                            light: '#F8FAFC'
                         }
                     }
                 }
@@ -37,6 +35,7 @@
         }
     </script>
     <style>
+        html { scroll-behavior: smooth; }
         .sticky-mobile-cta {
             position: fixed;
             bottom: 0;
@@ -44,9 +43,10 @@
             right: 0;
             z-index: 50;
         }
+        #form-success { display: none; }
+        #form-error { display: none; }
     </style>
 
-    <!-- Schema.org LocalBusiness / Electrician JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -65,18 +65,9 @@
         "addressCountry": "GB"
       },
       "areaServed": [
-        {
-          "@type": "AdministrativeArea",
-          "name": "[TOWN/CITY]"
-        },
-        {
-          "@type": "AdministrativeArea",
-          "name": "Gloucestershire"
-        },
-        {
-          "@type": "AdministrativeArea",
-          "name": "Surrounding Areas"
-        }
+        { "@type": "AdministrativeArea", "name": "[TOWN/CITY]" },
+        { "@type": "AdministrativeArea", "name": "[AREA 1]" },
+        { "@type": "AdministrativeArea", "name": "[AREA 2]" }
       ],
       "priceRange": "££"
     }
@@ -84,7 +75,7 @@
 </head>
 <body class="bg-brand-light text-slate-800 font-sans antialiased flex flex-col min-h-screen pb-16 md:pb-0">
 
-    <!-- HEADER / NAVIGATION -->
+    <!-- HEADER -->
     <header class="sticky top-0 z-40 bg-brand-dark text-white shadow-lg border-b border-slate-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#home" class="flex items-center gap-2 text-xl font-bold tracking-tight text-white">
@@ -94,17 +85,16 @@
                 <span class="business-name-target">[ELECTRICIAN BUSINESS NAME]</span>
             </a>
 
-            <!-- Desktop Nav Links -->
             <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
                 <a href="#home" class="hover:text-brand-amber transition">Home</a>
                 <a href="#services" class="hover:text-brand-amber transition">Services</a>
+                <a href="#gallery" class="hover:text-brand-amber transition">Our Work</a>
                 <a href="#areas" class="hover:text-brand-amber transition">Areas Covered</a>
                 <a href="#about" class="hover:text-brand-amber transition">About Us</a>
                 <a href="#faqs" class="hover:text-brand-amber transition">FAQs</a>
-                <a href="#contact" class="hover:text-brand-amber transition">Contact</a>
+                <a href="#quote" class="hover:text-brand-amber transition">Contact</a>
             </nav>
 
-            <!-- Header Action -->
             <div class="hidden md:flex items-center gap-4">
                 <a href="tel:[PHONE]" class="text-xs font-semibold text-slate-300 hover:text-white flex flex-col items-end">
                     <span>NEED ADVICE?</span>
@@ -115,7 +105,6 @@
                 </a>
             </div>
 
-            <!-- Mobile Menu Toggle Button -->
             <button id="menu-toggle" aria-label="Toggle navigation menu" class="md:hidden p-2 text-slate-300 hover:text-white focus:outline-none">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
@@ -123,392 +112,433 @@
             </button>
         </div>
 
-        <!-- Mobile Navigation Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-brand-navy border-b border-slate-700 px-4 pt-2 pb-6 space-y-3">
             <a href="#home" class="block text-slate-200 hover:text-brand-amber py-2 font-medium">Home</a>
             <a href="#services" class="block text-slate-200 hover:text-brand-amber py-2 font-medium">Services</a>
+            <a href="#gallery" class="block text-slate-200 hover:text-brand-amber py-2 font-medium">Our Work</a>
             <a href="#areas" class="block text-slate-200 hover:text-brand-amber py-2 font-medium">Areas Covered</a>
             <a href="#about" class="block text-slate-200 hover:text-brand-amber py-2 font-medium">About Us</a>
             <a href="#faqs" class="block text-slate-200 hover:text-brand-amber py-2 font-medium">FAQs</a>
-            <a href="#contact" class="block text-slate-200 hover:text-brand-amber py-2 font-medium">Contact</a>
+            <a href="#quote" class="block text-slate-200 hover:text-brand-amber py-2 font-medium">Contact</a>
             <a href="#quote" class="block text-center bg-brand-amber text-brand-dark font-bold py-3 rounded mt-4">Get a Quote</a>
         </div>
     </header>
 
     <main class="flex-grow">
 
-        <!-- HERO SECTION -->
-        <section id="home" class="relative bg-brand-dark text-white py-16 md:py-24 border-b border-slate-800">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-12 gap-12 items-center">
-                
-                <div class="md:col-span-7 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs text-brand-amber font-semibold uppercase tracking-wider">
-                        <span class="w-2 h-2 rounded-full bg-brand-amber"></span> Local Electrical Services in Gloucestershire
+        <!-- HERO -->
+        <section id="home" class="relative bg-brand-dark text-white overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1920&q=80" 
+                     alt="Professional electrician at work" 
+                     class="w-full h-full object-cover opacity-25">
+                <div class="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/75 to-transparent"></div>
+            </div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
+                <div class="max-w-2xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-slate-800/80 border border-slate-700 rounded-full text-xs text-brand-amber font-semibold uppercase tracking-wider mb-6 backdrop-blur-sm">
+                        <span class="w-2 h-2 rounded-full bg-brand-amber animate-pulse"></span>
+                        Local Electrical Contractor
                     </div>
-                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                        Professional Electrical Services in <span class="text-brand-amber location-target">Gloucestershire</span>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight mb-6">
+                        Professional Electrical Services in <span class="text-brand-amber location-target">[TOWN/CITY]</span>
                     </h1>
-                    <p class="text-lg text-slate-300 max-w-2xl leading-relaxed">
-                        Electrical services for homes and businesses across <strong class="text-white font-medium location-target">Gloucestershire</strong>. From installations and rewiring to fault diagnosis and consumer unit upgrades, contact <strong class="text-white font-medium business-name-target">[BUSINESS NAME]</strong> to discuss your project.
+                    <p class="text-lg text-slate-300 leading-relaxed mb-8">
+                        Reliable electrical services for homes and businesses across <strong class="text-white location-target">[TOWN/CITY]</strong> and surrounding areas. From rewiring and consumer unit upgrades to fault finding and new installations — contact <strong class="text-white business-name-target">[ELECTRICIAN BUSINESS NAME]</strong> for a free quotation.
                     </p>
-                    
-                    <div class="pt-2 flex flex-col sm:flex-row gap-4">
-                        <a href="#quote" class="inline-flex justify-center items-center bg-brand-amber hover:bg-brand-amberDark text-brand-dark font-bold text-base px-6 py-3.5 rounded shadow transition">
-                            Request a Quote
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#quote" class="inline-flex justify-center items-center gap-2 bg-brand-amber hover:bg-brand-amberDark text-brand-dark font-bold text-base px-8 py-4 rounded-lg shadow-lg transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
+                            Get a Free Quote
                         </a>
-                        <a href="tel:[PHONE]" class="inline-flex justify-center items-center bg-slate-800 hover:bg-slate-700 text-white font-semibold text-base px-6 py-3.5 rounded border border-slate-700 transition gap-2">
+                        <a href="tel:[PHONE]" class="inline-flex justify-center items-center gap-2 bg-slate-800/80 hover:bg-slate-700 text-white font-semibold text-base px-8 py-4 rounded-lg border border-slate-600 transition backdrop-blur-sm">
                             <svg class="w-5 h-5 text-brand-amber" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
                             Call <span class="phone-target">[PHONE]</span>
                         </a>
                     </div>
-                </div>
-
-                <!-- Realistic Contextual Visual Slot (Image Corrected) -->
-                <div class="md:col-span-5">
-                    <div class="bg-brand-navy border border-slate-700 rounded-xl overflow-hidden shadow-2xl relative">
-                        <div class="p-4 bg-slate-900 border-b border-slate-700 flex items-center justify-between text-xs text-slate-400">
-                            <span>Electrical Workmanship</span>
-                            <span class="text-brand-amber">Domestic & Commercial</span>
-                        </div>
-                        <div class="p-6 bg-slate-800 text-slate-300 space-y-4">
-                            <div class="aspect-video bg-slate-900 rounded border border-slate-700 overflow-hidden flex items-center justify-center">
-                                <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" 
-                                     alt="Modern UK electrical consumer unit installation" 
-                                     class="w-full h-full object-cover">
-                            </div>
-                            <p class="text-xs leading-relaxed text-slate-400">
-                                Contact us with details of your required electrical work to discuss scope and pricing before any work begins.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Editable Trust Strip -->
-            <div class="mt-12 border-t border-slate-800/80 bg-slate-900/50 py-4">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-xs sm:text-sm font-medium text-slate-300">
-                        <div class="p-2 border-r border-slate-800 last:border-none">✓ Professional Services</div>
-                        <div class="p-2 border-r border-slate-800 last:border-none">✓ Domestic & Commercial</div>
-                        <div class="p-2 border-r border-slate-800 last:border-none">✓ Clear Pricing Details</div>
-                        <div class="p-2 border-r border-slate-800 last:border-none">✓ Fully Insured & Tested</div>
+                    <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-800 pt-8 text-xs sm:text-sm font-medium text-slate-300">
+                        <div class="flex items-center gap-2"><span class="text-brand-amber">✓</span> Fully Qualified</div>
+                        <div class="flex items-center gap-2"><span class="text-brand-amber">✓</span> Domestic & Commercial</div>
+                        <div class="flex items-center gap-2"><span class="text-brand-amber">✓</span> Free Quotations</div>
+                        <div class="flex items-center gap-2"><span class="text-brand-amber">✓</span> Local Service</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SERVICES SECTION -->
+        <!-- AMBER STRIP -->
+        <div class="bg-brand-amber py-4 px-4">
+            <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+                <div>
+                    <p class="font-bold text-brand-dark text-base">Electrical work needed? Get a free no-obligation quote.</p>
+                    <p class="text-sm text-amber-900">Serving <span class="location-target">[TOWN/CITY]</span> and surrounding areas.</p>
+                </div>
+                <div class="flex gap-3">
+                    <a href="#quote" class="bg-brand-dark text-white font-bold text-sm px-5 py-2.5 rounded hover:bg-slate-800 transition">Request Quote</a>
+                    <a href="tel:[PHONE]" class="bg-brand-dark text-white font-bold text-sm px-5 py-2.5 rounded hover:bg-slate-800 transition">Call Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SERVICES -->
         <section id="services" class="py-16 md:py-24 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-xs font-bold uppercase tracking-wider text-brand-amberDark mb-2">Our Capabilities</h2>
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-brand-amberDark mb-2">What We Do</h2>
                     <p class="text-3xl font-extrabold text-slate-900 sm:text-4xl">Electrical Services Offered</p>
-                    <p class="mt-4 text-slate-600">Electrical solutions for homeowners, landlords, and commercial clients across the region.</p>
+                    <p class="mt-4 text-slate-600">Domestic and commercial electrical solutions across <span class="location-target">[TOWN/CITY]</span> and surrounding areas.</p>
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    
-                    <!-- Service Card 1 -->
-                    <div class="bg-brand-light rounded-lg border border-slate-200 p-6 flex flex-col justify-between hover:shadow-md transition">
-                        <div>
-                            <div class="service-badge w-12 h-12 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold mb-4">
-                                01
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-2">Consumer Unit Upgrades</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                                Replacement and modern distribution board installations to support safety and reliability for your property.
-                            </p>
+                    <div class="bg-brand-light rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition group">
+                        <div class="h-44 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80" alt="Consumer unit fuse board upgrade" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                         </div>
-                        <a href="#quote" class="inline-flex items-center text-sm font-semibold text-slate-900 hover:text-brand-amberDark">
-                            Request Quote &rarr;
-                        </a>
+                        <div class="p-6">
+                            <div class="service-badge w-10 h-10 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold text-sm mb-3">01</div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Consumer Unit Upgrades</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">Replacement and modern distribution board installations to improve safety and reliability in your property.</p>
+                            <a href="#quote" class="text-sm font-semibold text-brand-amberDark hover:text-brand-dark">Request Quote →</a>
+                        </div>
                     </div>
 
-                    <!-- Service Card 2 -->
-                    <div class="bg-brand-light rounded-lg border border-slate-200 p-6 flex flex-col justify-between hover:shadow-md transition">
-                        <div>
-                            <div class="service-badge w-12 h-12 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold mb-4">
-                                02
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-2">Domestic Electrical Work</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                                Domestic electrical solutions for home alterations, kitchen extensions, and general electrical alterations.
-                            </p>
+                    <div class="bg-brand-light rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition group">
+                        <div class="h-44 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80" alt="Domestic electrical installation work" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                         </div>
-                        <a href="#quote" class="inline-flex items-center text-sm font-semibold text-slate-900 hover:text-brand-amberDark">
-                            Request Quote &rarr;
-                        </a>
+                        <div class="p-6">
+                            <div class="service-badge w-10 h-10 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold text-sm mb-3">02</div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Domestic Electrical Work</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">Home alterations, kitchen and extension wiring, and general electrical work for residential properties.</p>
+                            <a href="#quote" class="text-sm font-semibold text-brand-amberDark hover:text-brand-dark">Request Quote →</a>
+                        </div>
                     </div>
 
-                    <!-- Service Card 3 -->
-                    <div class="bg-brand-light rounded-lg border border-slate-200 p-6 flex flex-col justify-between hover:shadow-md transition">
-                        <div>
-                            <div class="service-badge w-12 h-12 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold mb-4">
-                                03
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-2">Electrical Rewiring</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                                Full and partial rewiring services for residential or commercial buildings requiring modernised electrical cabling.
-                            </p>
+                    <div class="bg-brand-light rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition group">
+                        <div class="h-44 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=600&q=80" alt="Electrical rewiring cables" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                         </div>
-                        <a href="#quote" class="inline-flex items-center text-sm font-semibold text-slate-900 hover:text-brand-amberDark">
-                            Request Quote &rarr;
-                        </a>
+                        <div class="p-6">
+                            <div class="service-badge w-10 h-10 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold text-sm mb-3">03</div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Electrical Rewiring</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">Full and partial rewiring for residential or commercial buildings requiring modernised electrical cabling.</p>
+                            <a href="#quote" class="text-sm font-semibold text-brand-amberDark hover:text-brand-dark">Request Quote →</a>
+                        </div>
                     </div>
 
-                    <!-- Service Card 4 -->
-                    <div class="bg-brand-light rounded-lg border border-slate-200 p-6 flex flex-col justify-between hover:shadow-md transition">
-                        <div>
-                            <div class="service-badge w-12 h-12 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold mb-4">
-                                04
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-2">Lighting & Sockets</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                                Installation of internal spotlights, LED conversions, additional sockets, and external security lighting.
-                            </p>
+                    <div class="bg-brand-light rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition group">
+                        <div class="h-44 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?auto=format&fit=crop&w=600&q=80" alt="LED lighting installation" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                         </div>
-                        <a href="#quote" class="inline-flex items-center text-sm font-semibold text-slate-900 hover:text-brand-amberDark">
-                            Request Quote &rarr;
-                        </a>
+                        <div class="p-6">
+                            <div class="service-badge w-10 h-10 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold text-sm mb-3">04</div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Lighting & Sockets</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">Spotlights, LED upgrades, additional sockets, and external security lighting for homes and businesses.</p>
+                            <a href="#quote" class="text-sm font-semibold text-brand-amberDark hover:text-brand-dark">Request Quote →</a>
+                        </div>
                     </div>
 
-                    <!-- Service Card 5 -->
-                    <div class="bg-brand-light rounded-lg border border-slate-200 p-6 flex flex-col justify-between hover:shadow-md transition">
-                        <div>
-                            <div class="service-badge w-12 h-12 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold mb-4">
-                                05
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-2">Fault Finding & Repairs</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                                Diagnostic inspection for tripping circuits, damaged wiring, or unexpected loss of power.
-                            </p>
+                    <div class="bg-brand-light rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition group">
+                        <div class="h-44 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=600&q=80" alt="Electrical fault finding" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                         </div>
-                        <a href="#quote" class="inline-flex items-center text-sm font-semibold text-slate-900 hover:text-brand-amberDark">
-                            Request Quote &rarr;
-                        </a>
+                        <div class="p-6">
+                            <div class="service-badge w-10 h-10 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold text-sm mb-3">05</div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Fault Finding & Repairs</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">Diagnostic inspection for tripping circuits, damaged wiring, or unexpected loss of power.</p>
+                            <a href="#quote" class="text-sm font-semibold text-brand-amberDark hover:text-brand-dark">Request Quote →</a>
+                        </div>
                     </div>
 
-                    <!-- Service Card 6 -->
-                    <div class="bg-brand-light rounded-lg border border-slate-200 p-6 flex flex-col justify-between hover:shadow-md transition">
-                        <div>
-                            <div class="service-badge w-12 h-12 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold mb-4">
-                                06
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-2">Commercial Electrical</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                                Maintenance, lighting setups, and electrical support for offices, retail units, and local premises.
-                            </p>
+                    <div class="bg-brand-light rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition group">
+                        <div class="h-44 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" alt="Commercial electrical installation" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                         </div>
-                        <a href="#quote" class="inline-flex items-center text-sm font-semibold text-slate-900 hover:text-brand-amberDark">
-                            Request Quote &rarr;
-                        </a>
+                        <div class="p-6">
+                            <div class="service-badge w-10 h-10 bg-amber-100 text-brand-amberDark rounded-lg flex items-center justify-center font-bold text-sm mb-3">06</div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Commercial Electrical</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">Maintenance, lighting and electrical support for offices, retail units and commercial premises.</p>
+                            <a href="#quote" class="text-sm font-semibold text-brand-amberDark hover:text-brand-dark">Request Quote →</a>
+                        </div>
                     </div>
-
                 </div>
             </div>
         </section>
 
-        <!-- LOCAL SEO / SERVICE AREA SECTION -->
+        <!-- GALLERY -->
+        <section id="gallery" class="py-16 bg-slate-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-brand-amber mb-2">Our Work</h2>
+                    <p class="text-3xl font-extrabold text-white">Recent Projects</p>
+                    <p class="mt-3 text-slate-400">Electrical installations completed across <span class="location-target">[TOWN/CITY]</span> and surrounding areas.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="relative rounded-xl overflow-hidden group" style="grid-row: span 2;">
+                        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80" alt="Electrician installation work" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" style="min-height:300px;">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                            <span class="text-white text-sm font-semibold">Electrical Installation</span>
+                        </div>
+                    </div>
+                    <div class="relative rounded-xl overflow-hidden group h-48 md:h-56">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80" alt="Consumer unit upgrade" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                            <span class="text-white text-sm font-semibold">Consumer Unit Upgrade</span>
+                        </div>
+                    </div>
+                    <div class="relative rounded-xl overflow-hidden group h-48 md:h-56">
+                        <img src="https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?auto=format&fit=crop&w=600&q=80" alt="Lighting installation" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                            <span class="text-white text-sm font-semibold">Lighting Installation</span>
+                        </div>
+                    </div>
+                    <div class="relative rounded-xl overflow-hidden group h-48 md:h-56">
+                        <img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=600&q=80" alt="Rewiring work" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                            <span class="text-white text-sm font-semibold">Rewiring & Upgrades</span>
+                        </div>
+                    </div>
+                    <div class="relative rounded-xl overflow-hidden group h-48 md:h-56">
+                        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80" alt="Commercial electrical work" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                            <span class="text-white text-sm font-semibold">Commercial Work</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AREAS -->
         <section id="areas" class="py-16 bg-slate-900 text-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div>
                         <h2 class="text-xs font-bold uppercase tracking-wider text-brand-amber mb-2">Coverage</h2>
-                        <p class="text-3xl font-extrabold sm:text-4xl mb-4">Electrician Serving Local & Surrounding Areas</p>
+                        <p class="text-3xl font-extrabold sm:text-4xl mb-4">Areas We Serve</p>
                         <p class="text-slate-300 leading-relaxed mb-6">
-                            <span class="business-name-target">[BUSINESS NAME]</span> provides electrical support throughout the local region and nearby districts. Get in touch to discuss your project.
+                            <span class="business-name-target">[ELECTRICIAN BUSINESS NAME]</span> covers <span class="location-target">[TOWN/CITY]</span> and the surrounding region. Get in touch to confirm we cover your location.
                         </p>
-                        
                         <div class="grid grid-cols-2 gap-3 text-sm font-medium text-slate-200 mb-8">
                             <div class="flex items-center gap-2"><span class="text-brand-amber">•</span> Domestic Properties</div>
                             <div class="flex items-center gap-2"><span class="text-brand-amber">•</span> Commercial Units</div>
                             <div class="flex items-center gap-2"><span class="text-brand-amber">•</span> Local Landlords</div>
                             <div class="flex items-center gap-2"><span class="text-brand-amber">•</span> Extension Wiring</div>
-                            <div class="flex items-center gap-2"><span class="text-brand-amber">•</span> Emergency Faults</div>
+                            <div class="flex items-center gap-2"><span class="text-brand-amber">•</span> Fault Repairs</div>
                             <div class="flex items-center gap-2"><span class="text-brand-amber">•</span> Surrounding Villages</div>
                         </div>
-
-                        <a href="#contact" class="inline-flex items-center bg-brand-amber text-brand-dark font-bold px-5 py-3 rounded text-sm hover:bg-brand-amberDark transition">
-                            Inquire About Your Project
+                        <a href="#quote" class="inline-flex items-center bg-brand-amber text-brand-dark font-bold px-5 py-3 rounded text-sm hover:bg-brand-amberDark transition">
+                            Enquire About Your Project
                         </a>
                     </div>
-
-                    <div class="bg-slate-800 p-6 rounded-lg border border-slate-700 text-center">
-                        <div class="aspect-square bg-slate-900 rounded border border-slate-700 flex flex-col items-center justify-center p-6 text-slate-400">
-                            <svg class="w-12 h-12 text-slate-600 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                            <p class="text-sm font-semibold text-slate-300">Local Area Operations Coverage</p>
-                            <p class="text-xs mt-2 text-slate-500">[ Coverage map placeholder ]</p>
-                        </div>
+                    <div class="rounded-xl overflow-hidden h-72">
+                        <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=800&q=80" alt="Electrician inspecting electrical panel" class="w-full h-full object-cover">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ABOUT / TRUST SECTION -->
+        <!-- ABOUT -->
         <section id="about" class="py-16 bg-white">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="bg-brand-light border border-slate-200 rounded-xl p-8 md:p-12">
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-4">About <span class="business-name-target">[BUSINESS NAME]</span></h2>
-                    <div class="prose text-slate-600 leading-relaxed space-y-4 text-base">
-                        <p>
-                            <span class="business-name-target">[BUSINESS NAME]</span> provides electrical services for residential and commercial properties. We focus on clear communication, prompt service, and practical electrical solutions.
-                        </p>
-                        <p>
-                            Whether you need additional power sockets fitted, a consumer unit upgrade, or assistance with a larger installation project, every query receives careful attention to detail.
-                        </p>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" alt="Professional electrician at work" class="rounded-xl w-full h-80 object-cover shadow-lg">
+                        <div class="absolute -bottom-5 -right-5 hidden sm:block bg-brand-dark text-white p-5 rounded-xl shadow-xl border-l-4 border-brand-amber">
+                            <p class="font-bold text-brand-amber text-lg">Local</p>
+                            <p class="text-xs text-slate-400">Based in <span class="location-target">[TOWN/CITY]</span></p>
+                        </div>
                     </div>
-
-                    <div class="mt-8 border-t border-slate-200 pt-6 grid sm:grid-cols-3 gap-4 text-center">
-                        <div class="p-3 bg-white rounded border border-slate-200">
-                            <span class="block text-slate-900 font-bold">Clear Pricing</span>
-                            <span class="text-xs text-slate-500">Details provided upon enquiry</span>
-                        </div>
-                        <div class="p-3 bg-white rounded border border-slate-200">
-                            <span class="block text-slate-900 font-bold">Standard Practice</span>
-                            <span class="text-xs text-slate-500">Professional approach</span>
-                        </div>
-                        <div class="p-3 bg-white rounded border border-slate-200">
-                            <span class="block text-slate-900 font-bold">Respectful Service</span>
-                            <span class="text-xs text-slate-500">Clean, tidy site conduct</span>
-                        </div>
+                    <div>
+                        <h2 class="text-xs font-bold uppercase tracking-wider text-brand-amberDark mb-2">About Us</h2>
+                        <p class="text-3xl font-extrabold text-slate-900 mb-5">Electrical Work Done Properly</p>
+                        <p class="text-slate-600 leading-relaxed mb-4">
+                            <span class="business-name-target">[ELECTRICIAN BUSINESS NAME]</span> provides electrical services for homes and businesses across <span class="location-target">[TOWN/CITY]</span>. The focus is on professional workmanship, clear communication and reliable service from start to finish.
+                        </p>
+                        <p class="text-slate-600 leading-relaxed mb-6">
+                            Whether you need a consumer unit replaced, additional sockets installed, a rewire or an electrical fault investigated — work is completed safely and efficiently with minimal disruption.
+                        </p>
+                        <ul class="space-y-3 text-sm text-slate-700">
+                            <li class="flex items-center gap-2"><span class="text-brand-amber font-bold">✓</span> Domestic & commercial electrical work</li>
+                            <li class="flex items-center gap-2"><span class="text-brand-amber font-bold">✓</span> Free written quotations before any work starts</li>
+                            <li class="flex items-center gap-2"><span class="text-brand-amber font-bold">✓</span> Clean, tidy approach to every job</li>
+                            <li class="flex items-center gap-2"><span class="text-brand-amber font-bold">✓</span> Straightforward advice — no unnecessary upselling</li>
+                        </ul>
+                        <a href="#quote" class="inline-flex items-center mt-6 bg-brand-amber hover:bg-brand-amberDark text-brand-dark font-bold px-6 py-3 rounded-lg transition">
+                            Get a Free Quote
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- QUOTE & CONTACT FORM SECTION -->
-        <section id="quote" class="py-16 md:py-24 bg-brand-light border-t border-slate-200">
+        <!-- QUOTE FORM — FORMSPREE INTEGRATED -->
+        <section id="quote" class="py-16 md:py-24 bg-brand-dark">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid lg:grid-cols-12 gap-12">
-                    
-                    <!-- Contact Details -->
                     <div class="lg:col-span-5 space-y-6">
-                        <h2 class="text-xs font-bold uppercase tracking-wider text-brand-amberDark">Get In Touch</h2>
-                        <p class="text-3xl font-extrabold text-slate-900">Request an Electrical Quotation</p>
-                        <p class="text-slate-600 leading-relaxed">
-                            Fill out the enquiry form or call directly to discuss your electrical project.
-                        </p>
-
-                        <div class="space-y-4 pt-4">
-                            <div class="flex items-start gap-4">
-                                <div class="p-3 bg-amber-100 text-brand-amberDark rounded-lg">
-                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+                        <h2 class="text-xs font-bold uppercase tracking-wider text-brand-amber">Get In Touch</h2>
+                        <p class="text-3xl font-extrabold text-white">Request a Free Electrical Quotation</p>
+                        <p class="text-slate-400 leading-relaxed">Fill out the form and we'll get back to you to discuss your requirements. No obligation at all.</p>
+                        <div class="space-y-4 pt-2">
+                            <div class="flex items-center gap-4 py-3 border-b border-slate-800">
+                                <div class="p-3 bg-amber-900/30 text-brand-amber rounded-lg">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-sm font-semibold text-slate-500">Phone</h3>
-                                    <a href="tel:[PHONE]" class="text-lg font-bold text-slate-900 hover:text-brand-amberDark phone-target">[PHONE]</a>
+                                    <p class="text-xs text-slate-500 uppercase tracking-wider">Phone</p>
+                                    <a href="tel:[PHONE]" class="text-white font-bold text-lg phone-target hover:text-brand-amber transition">[PHONE]</a>
                                 </div>
                             </div>
-
-                            <div class="flex items-start gap-4">
-                                <div class="p-3 bg-amber-100 text-brand-amberDark rounded-lg">
-                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+                            <div class="flex items-center gap-4 py-3 border-b border-slate-800">
+                                <div class="p-3 bg-amber-900/30 text-brand-amber rounded-lg">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-sm font-semibold text-slate-500">Email</h3>
-                                    <a href="mailto:info@electricianservice.co.uk" class="text-lg font-bold text-slate-900 hover:text-brand-amberDark">info@electricianservice.co.uk</a>
+                                    <p class="text-xs text-slate-500 uppercase tracking-wider">Email</p>
+                                    <a href="mailto:[EMAIL]" class="text-white font-bold hover:text-brand-amber transition">[EMAIL]</a>
                                 </div>
                             </div>
-
-                            <div class="flex items-start gap-4">
-                                <div class="p-3 bg-amber-100 text-brand-amberDark rounded-lg">
-                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+                            <div class="flex items-center gap-4 py-3">
+                                <div class="p-3 bg-amber-900/30 text-brand-amber rounded-lg">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-sm font-semibold text-slate-500">Primary Operating Base</h3>
-                                    <p class="text-slate-900 font-medium">Gloucestershire, UK</p>
+                                    <p class="text-xs text-slate-500 uppercase tracking-wider">Service Area</p>
+                                    <p class="text-white font-bold"><span class="location-target">[TOWN/CITY]</span> & Surrounding Areas</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Quote Form Container -->
-                    <div class="lg:col-span-7 bg-white p-8 rounded-xl shadow-sm border border-slate-200">
-                        <form id="contact-form" class="space-y-6">
-                            <div class="grid sm:grid-cols-2 gap-6">
+                    <!-- FORMSPREE FORM -->
+                    <div class="lg:col-span-7 bg-white p-8 rounded-xl shadow-2xl">
+                        <h3 class="text-xl font-extrabold text-slate-900 mb-6">Free Quote Request</h3>
+
+                        <!-- Success message -->
+                        <div id="form-success" class="mb-5 p-4 bg-green-50 border border-green-300 rounded-lg text-green-800 text-sm font-semibold text-center">
+                            ✅ Thank you — your enquiry has been received. We'll be in touch shortly.
+                        </div>
+
+                        <!-- Error message -->
+                        <div id="form-error" class="mb-5 p-4 bg-red-50 border border-red-300 rounded-lg text-red-800 text-sm font-semibold text-center">
+                            Something went wrong. Please call us directly or try again.
+                        </div>
+
+                        <form id="contact-form" action="https://formspree.io/f/xoevzzkb" method="POST" class="space-y-5">
+                            <input type="hidden" name="_subject" value="New Electrical Quote Request — Website Enquiry">
+
+                            <div class="grid sm:grid-cols-2 gap-5">
                                 <div>
-                                    <label for="name" class="block text-sm font-semibold text-slate-700 mb-2">Full Name *</label>
-                                    <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded border border-slate-300 focus:ring-2 focus:ring-brand-amber focus:border-brand-amber text-slate-900" placeholder="e.g. John Smith">
+                                    <label for="name" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Full Name *</label>
+                                    <input type="text" id="name" name="Full Name" required placeholder="e.g. John Smith" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-amber focus:border-brand-amber text-slate-900 text-sm outline-none transition">
                                 </div>
                                 <div>
-                                    <label for="phone-input" class="block text-sm font-semibold text-slate-700 mb-2">Phone Number *</label>
-                                    <input type="tel" id="phone-input" name="phone" required class="w-full px-4 py-3 rounded border border-slate-300 focus:ring-2 focus:ring-brand-amber focus:border-brand-amber text-slate-900" placeholder="e.g. 07123 456789">
+                                    <label for="phone-input" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Phone Number *</label>
+                                    <input type="tel" id="phone-input" name="Phone Number" required placeholder="e.g. 07123 456789" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-amber focus:border-brand-amber text-slate-900 text-sm outline-none transition">
                                 </div>
                             </div>
 
-                            <div class="grid sm:grid-cols-2 gap-6">
+                            <div class="grid sm:grid-cols-2 gap-5">
                                 <div>
-                                    <label for="email" class="block text-sm font-semibold text-slate-700 mb-2">Email Address *</label>
-                                    <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded border border-slate-300 focus:ring-2 focus:ring-brand-amber focus:border-brand-amber text-slate-900" placeholder="e.g. john@example.co.uk">
+                                    <label for="email" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Email Address *</label>
+                                    <input type="email" id="email" name="email" required placeholder="e.g. john@example.co.uk" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-amber focus:border-brand-amber text-slate-900 text-sm outline-none transition">
                                 </div>
                                 <div>
-                                    <label for="postcode" class="block text-sm font-semibold text-slate-700 mb-2">Property Postcode *</label>
-                                    <input type="text" id="postcode" name="postcode" required class="w-full px-4 py-3 rounded border border-slate-300 focus:ring-2 focus:ring-brand-amber focus:border-brand-amber text-slate-900" placeholder="e.g. GL19">
+                                    <label for="postcode" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Postcode *</label>
+                                    <input type="text" id="postcode" name="Postcode" required placeholder="e.g. GL19" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-amber focus:border-brand-amber text-slate-900 text-sm outline-none transition">
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="service" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Service Required</label>
+                                    <select id="service" name="Service Required" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-amber focus:border-brand-amber text-slate-900 text-sm outline-none transition bg-white">
+                                        <option value="">Select a service...</option>
+                                        <option>General Electrical Enquiry</option>
+                                        <option>Consumer Unit Upgrade</option>
+                                        <option>Electrical Rewiring</option>
+                                        <option>Lighting or Sockets</option>
+                                        <option>Fault Finding / Repair</option>
+                                        <option>Electrical Inspection (EICR)</option>
+                                        <option>EV Charger Installation</option>
+                                        <option>Commercial Electrical Work</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="property" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Property Type</label>
+                                    <select id="property" name="Property Type" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-amber focus:border-brand-amber text-slate-900 text-sm outline-none transition bg-white">
+                                        <option value="">Select...</option>
+                                        <option>Terraced House</option>
+                                        <option>Semi-Detached House</option>
+                                        <option>Detached House</option>
+                                        <option>Flat / Apartment</option>
+                                        <option>Bungalow</option>
+                                        <option>Commercial Property</option>
+                                        <option>Other</option>
+                                    </select>
                                 </div>
                             </div>
 
                             <div>
-                                <label for="service" class="block text-sm font-semibold text-slate-700 mb-2">Service Required</label>
-                                <select id="service" name="service" class="w-full px-4 py-3 rounded border border-slate-300 focus:ring-2 focus:ring-brand-amber focus:border-brand-amber text-slate-900">
-                                    <option value="general">General Electrical Enquiry</option>
-                                    <option value="consumer-unit">Consumer Unit Upgrade</option>
-                                    <option value="rewiring">Electrical Rewiring</option>
-                                    <option value="lighting">Lighting or Sockets</option>
-                                    <option value="fault-finding">Fault Finding / Repair</option>
-                                    <option value="commercial">Commercial Electrical</option>
-                                </select>
+                                <label for="message" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Project Description *</label>
+                                <textarea id="message" name="Project Description" rows="4" required placeholder="Please describe the electrical work you need, or the fault you're experiencing..." class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-amber focus:border-brand-amber text-slate-900 text-sm outline-none transition resize-y"></textarea>
                             </div>
 
-                            <div>
-                                <label for="message" class="block text-sm font-semibold text-slate-700 mb-2">Project Description *</label>
-                                <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 rounded border border-slate-300 focus:ring-2 focus:ring-brand-amber focus:border-brand-amber text-slate-900" placeholder="Please describe the electrical work you require..."></textarea>
-                            </div>
-
-                            <button type="submit" class="w-full bg-brand-amber hover:bg-brand-amberDark text-brand-dark font-bold py-4 rounded text-base shadow transition">
-                                Request a Quote
+                            <button type="submit" id="submit-btn" class="w-full bg-brand-amber hover:bg-brand-amberDark text-brand-dark font-bold py-4 rounded-lg text-base shadow transition">
+                                Request a Free Quote →
                             </button>
-                            <p class="text-xs text-center text-slate-500">Your details will be used only to respond to your enquiry.</p>
+                            <p class="text-xs text-center text-slate-500">Your details will only be used to respond to your enquiry.</p>
                         </form>
-                        
-                        <div id="form-confirmation" class="hidden p-6 bg-slate-100 border border-slate-300 text-slate-800 rounded-lg text-center mt-4">
-                            <p class="font-bold text-lg">Demo Notice</p>
-                            <p class="text-sm mt-1">This enquiry form is ready to be connected to your preferred email or enquiry system before launch.</p>
-                        </div>
                     </div>
-
                 </div>
             </div>
         </section>
 
-        <!-- FAQS SECTION -->
+        <!-- FAQS -->
         <section id="faqs" class="py-16 bg-white border-t border-slate-200">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl font-extrabold text-slate-900">Frequently Asked Questions</h2>
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-brand-amberDark mb-2">Common Questions</h2>
+                    <p class="text-3xl font-extrabold text-slate-900">Frequently Asked Questions</p>
                 </div>
-
-                <div class="space-y-6">
-                    <div class="border border-slate-200 rounded-lg p-6">
-                        <h3 class="text-lg font-bold text-slate-900">How do I get an estimate for work?</h3>
-                        <p class="mt-2 text-slate-600 text-sm leading-relaxed">
-                            Contact us via phone or submit your project details using the online enquiry form to discuss scope and pricing.
-                        </p>
-                    </div>
-
-                    <div class="border border-slate-200 rounded-lg p-6">
-                        <h3 class="text-lg font-bold text-slate-900">What areas do you cover?</h3>
-                        <p class="mt-2 text-slate-600 text-sm leading-relaxed">
-                            We cover local districts and surrounding communities. Contact us with your postcode to confirm availability.
-                        </p>
-                    </div>
-
-                    <div class="border border-slate-200 rounded-lg p-6">
-                        <h3 class="text-lg font-bold text-slate-900">Do you offer both domestic and commercial electrical services?</h3>
-                        <p class="mt-2 text-slate-600 text-sm leading-relaxed">
-                            Yes, we handle both residential homes and commercial business premises. Contact us to discuss your specific requirements.
-                        </p>
-                    </div>
+                <div class="space-y-4">
+                    <details class="border border-slate-200 rounded-xl p-0 group">
+                        <summary class="flex justify-between items-center cursor-pointer p-6 font-bold text-slate-900 list-none">
+                            How do I get a quote for electrical work?
+                            <span class="text-brand-amber text-2xl font-light group-open:rotate-45 transition-transform">+</span>
+                        </summary>
+                        <p class="px-6 pb-6 text-slate-600 text-sm leading-relaxed">Contact us by phone or submit your details using the quote form above. We'll discuss the scope and provide a written quotation before any work begins.</p>
+                    </details>
+                    <details class="border border-slate-200 rounded-xl p-0 group">
+                        <summary class="flex justify-between items-center cursor-pointer p-6 font-bold text-slate-900 list-none">
+                            What areas do you cover?
+                            <span class="text-brand-amber text-2xl font-light group-open:rotate-45 transition-transform">+</span>
+                        </summary>
+                        <p class="px-6 pb-6 text-slate-600 text-sm leading-relaxed">We cover <span class="location-target">[TOWN/CITY]</span> and surrounding areas. Contact us with your postcode to confirm we service your location.</p>
+                    </details>
+                    <details class="border border-slate-200 rounded-xl p-0 group">
+                        <summary class="flex justify-between items-center cursor-pointer p-6 font-bold text-slate-900 list-none">
+                            Do you work on both houses and commercial properties?
+                            <span class="text-brand-amber text-2xl font-light group-open:rotate-45 transition-transform">+</span>
+                        </summary>
+                        <p class="px-6 pb-6 text-slate-600 text-sm leading-relaxed">Yes — we carry out electrical work on both domestic and commercial properties across the region.</p>
+                    </details>
+                    <details class="border border-slate-200 rounded-xl p-0 group">
+                        <summary class="flex justify-between items-center cursor-pointer p-6 font-bold text-slate-900 list-none">
+                            What is an EICR and do I need one?
+                            <span class="text-brand-amber text-2xl font-light group-open:rotate-45 transition-transform">+</span>
+                        </summary>
+                        <p class="px-6 pb-6 text-slate-600 text-sm leading-relaxed">An Electrical Installation Condition Report (EICR) is a formal inspection of your property's fixed wiring. Landlords are legally required to have one every five years. Homebuyers and sellers often request them too.</p>
+                    </details>
+                    <details class="border border-slate-200 rounded-xl p-0 group">
+                        <summary class="flex justify-between items-center cursor-pointer p-6 font-bold text-slate-900 list-none">
+                            Do you provide free quotations?
+                            <span class="text-brand-amber text-2xl font-light group-open:rotate-45 transition-transform">+</span>
+                        </summary>
+                        <p class="px-6 pb-6 text-slate-600 text-sm leading-relaxed">Yes — written quotations are provided before any work begins. There is no obligation to proceed.</p>
+                    </details>
                 </div>
             </div>
         </section>
@@ -519,82 +549,71 @@
     <footer class="bg-brand-dark text-slate-400 py-12 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-8 mb-12">
             <div>
-                <span class="text-white font-bold text-lg block mb-3 business-name-target">[ELECTRICIAN BUSINESS NAME]</span>
-                <p class="text-xs leading-relaxed text-slate-400">
-                    Electrical contractor serving residential and commercial properties.
-                </p>
+                <div class="flex items-center gap-2 mb-3">
+                    <svg class="w-6 h-6 text-brand-amber" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.57l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.57l7-10a1 1 0 01.12-.384z" clip-rule="evenodd"/></svg>
+                    <span class="text-white font-bold business-name-target">[ELECTRICIAN BUSINESS NAME]</span>
+                </div>
+                <p class="text-xs leading-relaxed">Electrical contractor serving residential and commercial properties across <span class="location-target">[TOWN/CITY]</span>.</p>
             </div>
             <div>
                 <span class="text-white font-semibold text-sm block mb-3">Quick Links</span>
                 <ul class="space-y-2 text-xs">
-                    <li><a href="#home" class="hover:text-white">Home</a></li>
-                    <li><a href="#services" class="hover:text-white">Electrical Services</a></li>
-                    <li><a href="#areas" class="hover:text-white">Areas We Cover</a></li>
-                    <li><a href="#about" class="hover:text-white">About Us</a></li>
-                    <li><a href="#quote" class="hover:text-white">Request Quote</a></li>
+                    <li><a href="#home" class="hover:text-white transition">Home</a></li>
+                    <li><a href="#services" class="hover:text-white transition">Electrical Services</a></li>
+                    <li><a href="#gallery" class="hover:text-white transition">Our Work</a></li>
+                    <li><a href="#areas" class="hover:text-white transition">Areas We Cover</a></li>
+                    <li><a href="#quote" class="hover:text-white transition">Request Quote</a></li>
                 </ul>
             </div>
             <div>
-                <span class="text-white font-semibold text-sm block mb-3">Electrical Services</span>
+                <span class="text-white font-semibold text-sm block mb-3">Our Services</span>
                 <ul class="space-y-2 text-xs">
-                    <li><a href="#services" class="hover:text-white">Consumer Unit Upgrades</a></li>
-                    <li><a href="#services" class="hover:text-white">Domestic Rewiring</a></li>
-                    <li><a href="#services" class="hover:text-white">Lighting & Sockets</a></li>
-                    <li><a href="#services" class="hover:text-white">Fault Diagnosis</a></li>
+                    <li><a href="#services" class="hover:text-white transition">Consumer Unit Upgrades</a></li>
+                    <li><a href="#services" class="hover:text-white transition">Domestic Rewiring</a></li>
+                    <li><a href="#services" class="hover:text-white transition">Lighting & Sockets</a></li>
+                    <li><a href="#services" class="hover:text-white transition">Fault Finding</a></li>
+                    <li><a href="#services" class="hover:text-white transition">Commercial Electrical</a></li>
                 </ul>
             </div>
             <div>
-                <span class="text-white font-semibold text-sm block mb-3">Contact Details</span>
-                <p class="text-xs text-slate-300 font-medium">Phone: <span class="phone-target">[PHONE]</span></p>
-                <p class="text-xs text-slate-300 font-medium mt-1">Email: info@electricianservice.co.uk</p>
-                <p class="text-xs text-slate-400 mt-2">Location: Gloucestershire</p>
+                <span class="text-white font-semibold text-sm block mb-3">Contact</span>
+                <p class="text-xs mb-1">Phone: <a href="tel:[PHONE]" class="text-brand-amber font-semibold phone-target hover:text-white transition">[PHONE]</a></p>
+                <p class="text-xs mb-1">Email: <a href="mailto:[EMAIL]" class="hover:text-white transition">[EMAIL]</a></p>
+                <p class="text-xs mt-2 text-slate-500">Based in <span class="location-target">[TOWN/CITY]</span>, UK</p>
             </div>
         </div>
-
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
             <p>© <span id="year"></span> <span class="business-name-target">[ELECTRICIAN BUSINESS NAME]</span>. All rights reserved.</p>
             <div class="flex space-x-6">
-                <a href="#privacy" class="hover:text-slate-400">Privacy Policy</a>
-                <a href="#terms" class="hover:text-slate-400">Terms of Service</a>
+                <a href="#" class="hover:text-slate-400 transition">Privacy Policy</a>
+                <a href="#" class="hover:text-slate-400 transition">Terms of Service</a>
             </div>
         </div>
     </footer>
 
-    <!-- PERSISTENT MOBILE CTA BAR -->
+    <!-- MOBILE STICKY CTA -->
     <div class="sticky-mobile-cta md:hidden bg-brand-dark border-t border-slate-800 p-2 grid grid-cols-2 gap-2">
         <a href="tel:[PHONE]" class="flex items-center justify-center gap-1.5 bg-slate-800 text-white font-bold text-xs py-3 rounded border border-slate-700">
             <svg class="w-4 h-4 text-brand-amber" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
             Call <span class="phone-target">[PHONE]</span>
         </a>
         <a href="#quote" class="flex items-center justify-center bg-brand-amber text-brand-dark font-bold text-xs py-3 rounded">
-            Get Quote
+            Get Free Quote
         </a>
     </div>
 
-    <!-- ADVANCED DYNAMIC ROUTER & INDIVIDUALITY THEME STYLING SCRIPT FOR 121 LEADS -->
     <script>
-        // Set dynamic copyright year
+        // ── Year ──────────────────────────────────────────────────
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Mobile Menu Toggle
+        // ── Mobile Menu ───────────────────────────────────────────
         const menuBtn = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
 
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Contact Form Handler
-        const form = document.getElementById('contact-form');
-        const confirmation = document.getElementById('form-confirmation');
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            form.classList.add('hidden');
-            confirmation.classList.remove('hidden');
-        });
-
-        // 1. Extract URL Parameters (?biz=BusinessName&phone=PhoneNumber&town=TownName&v=1 to 121)
+        // ── URL Parameter Dynamic Personalisation ─────────────────
+        // Usage: ?biz=BusinessName&phone=07123456789&town=Manchester&v=1
         const urlParams = new URLSearchParams(window.location.search);
         const businessName = urlParams.get('biz');
         const phoneParam = urlParams.get('phone');
@@ -603,100 +622,88 @@
 
         if (businessName) {
             const decodedName = decodeURIComponent(businessName.replace(/\+/g, ' '));
-            document.title = decodedName + " | Professional Electrical Services";
-            
-            // Replace all business name placeholders
-            document.querySelectorAll('.business-name-target').forEach(el => {
-                el.textContent = decodedName;
-            });
+            document.title = decodedName + ' | Professional Electrical Services';
+            document.querySelectorAll('.business-name-target').forEach(el => el.textContent = decodedName);
 
-            // Determine town/city: Use explicit ?town= or ?location= if present, 
-            // otherwise intelligently parse from business name by filtering out corporate suffixes and industry terms (Limited, Ltd, Electrical, Services, etc.)
             let town = townParam ? decodeURIComponent(townParam.replace(/\+/g, ' ')) : '';
             if (!town) {
-                const strippedName = decodedName.replace(/\b(Limited|Ltd|Electrical|Services|Contractors|Group|Co|PLC|LLC)\b/gi, '').trim();
-                const parts = strippedName.split(/\s+/).filter(Boolean);
-                if (parts.length > 0) {
-                    town = parts[parts.length - 1];
-                } else {
-                    const origParts = decodedName.split(/\s+/);
-                    town = origParts.length > 1 ? origParts[origParts.length - 2] : origParts[0];
-                }
+                const stripped = decodedName.replace(/(Limited|Ltd|Electrical|Services|Contractors|Group|Co|PLC)/gi, '').trim();
+                const parts = stripped.split(/\s+/).filter(Boolean);
+                town = parts.length > 0 ? parts[parts.length - 1] : decodedName.split(' ')[0];
             }
-
             if (town) {
-                document.querySelectorAll('.location-target').forEach(el => {
-                    el.textContent = town;
-                });
+                document.querySelectorAll('.location-target').forEach(el => el.textContent = town);
             }
         }
 
         if (phoneParam) {
             const decodedPhone = decodeURIComponent(phoneParam);
-            document.querySelectorAll('.phone-target').forEach(el => {
-                el.textContent = decodedPhone;
-            });
-            document.querySelectorAll('a[href^="tel:"]').forEach(el => {
-                el.setAttribute('href', 'tel:' + decodedPhone);
-            });
+            document.querySelectorAll('.phone-target').forEach(el => el.textContent = decodedPhone);
+            document.querySelectorAll('a[href^="tel:"]').forEach(el => el.setAttribute('href', 'tel:' + decodedPhone.replace(/\s/g, '')));
         }
 
-        // 2. Dynamic Algorithmic Individuality Generator for all 121 Leads (?v=1 to 121)
-        // Generates truly distinct colors, fonts, and icon badge styles for every single lead variant index.
-        function generateUniqueLeadTheme(v) {
-            // Distribute hues across 360 degrees using a golden-ratio/coprime step for maximum distinction
+        // ── Unique Theme Per Lead Variant ─────────────────────────
+        function generateLeadTheme(v) {
             const hue = (v * 47) % 360;
             const accentHue = (hue + 40 + (v % 5) * 15) % 360;
-
-            const primaryColor = `hsl(${hue}, 30%, 11%)`;       // Rich individual dark slate/tone
-            const accentColor = `hsl(${accentHue}, 85%, 52%)`;    // Vibrant unique accent color
-            const lightBgColor = `hsl(${hue}, 20%, 98%)`;       // Subtle tinted background
-
-            // Typography rotation across 5 distinct font styles & weights
-            const fonts = [
-                'system-ui, -apple-system, sans-serif',
-                'Georgia, Cambria, "Times New Roman", serif',
-                'ui-monospace, SFMono-Regular, Menlo, monospace',
-                '"Trebuchet MS", "Lucida Grande", sans-serif',
-                'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif'
-            ];
-            const fontStyle = fonts[(v - 1) % fonts.length];
-
-            // Icon badge style variation (border radius & shadow shape styles)
-            const badgeRadius = (v % 3 === 0) ? '9999px' : (v % 3 === 1) ? '0.75rem' : '0.25rem';
-
             return {
-                primary: primaryColor,
-                accent: accentColor,
-                lightBg: lightBgColor,
-                font: fontStyle,
-                badgeRadius: badgeRadius
+                accent: `hsl(${accentHue}, 85%, 52%)`,
+                badgeRadius: (v % 3 === 0) ? '9999px' : (v % 3 === 1) ? '0.75rem' : '0.25rem'
             };
         }
 
-        const leadTheme = generateUniqueLeadTheme(variant);
-
-        // Apply unique custom theme styling dynamically across the page elements
-        document.body.style.fontFamily = leadTheme.font;
-
-        document.querySelectorAll('.bg-brand-amber').forEach(el => {
-            el.style.backgroundColor = leadTheme.accent;
-        });
-        document.querySelectorAll('.text-brand-amber').forEach(el => {
-            el.style.color = leadTheme.accent;
-        });
-        document.querySelectorAll('.text-brand-amberDark').forEach(el => {
-            el.style.color = leadTheme.accent;
-        });
-        document.querySelectorAll('header').forEach(el => {
-            el.style.borderBottomColor = leadTheme.accent;
-        });
+        const theme = generateLeadTheme(variant);
         document.querySelectorAll('.service-badge').forEach(el => {
-            el.style.borderRadius = leadTheme.badgeRadius;
-            el.style.backgroundColor = leadTheme.lightBg;
-            el.style.borderColor = leadTheme.accent;
-            el.style.borderWidth = '1px';
+            el.style.borderRadius = theme.badgeRadius;
         });
+
+        // ── Formspree AJAX Submission ─────────────────────────────
+        const form = document.getElementById('contact-form');
+        const successMsg = document.getElementById('form-success');
+        const errorMsg = document.getElementById('form-error');
+        const submitBtn = document.getElementById('submit-btn');
+
+        if (form) {
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                // Hide any previous messages
+                successMsg.style.display = 'none';
+                errorMsg.style.display = 'none';
+
+                // Disable button while sending
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+
+                try {
+                    const response = await fetch('https://formspree.io/f/xoevzzkb', {
+                        method: 'POST',
+                        body: new FormData(form),
+                        headers: { 'Accept': 'application/json' }
+                    });
+
+                    if (response.ok) {
+                        // Show success
+                        successMsg.style.display = 'block';
+                        successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        form.reset();
+                    } else {
+                        // Show error
+                        const data = await response.json();
+                        errorMsg.textContent = data.errors
+                            ? data.errors.map(err => err.message).join(', ')
+                            : 'Something went wrong. Please call us directly.';
+                        errorMsg.style.display = 'block';
+                    }
+                } catch (err) {
+                    errorMsg.textContent = 'Network error — please call us or try again shortly.';
+                    errorMsg.style.display = 'block';
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Request a Free Quote →';
+                }
+            });
+        }
     </script>
 </body>
 </html>
